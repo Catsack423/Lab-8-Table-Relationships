@@ -28,6 +28,9 @@ public class ProductService {
     }
 
     public void save(Product product) {
+        if (product.getDetail() != null && product.getDetail().getId() == null) {
+            product.getDetail().setProduct(product);
+        }
         setProductRefOnReviews(product);
         productRepository.save(product);
     }

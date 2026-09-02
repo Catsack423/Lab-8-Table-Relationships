@@ -3,6 +3,8 @@ package com.lab.lab8.Entitys;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.lab.lab8.strategy.DiscountContext;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,6 +15,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "products")
@@ -100,6 +103,13 @@ public class Product {
 
     public void setDiscountType(String discountType) {
         this.discountType = discountType;
+    }
+
+    @Transient
+    public double getDiscountedPrice() {
+        return DiscountContext.calculateDiscountedPrice(
+                price != null ? price : 0.0,
+                discountType);
     }
 
     public ProductDetail getDetail() {

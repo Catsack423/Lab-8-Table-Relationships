@@ -11,33 +11,42 @@
 
     <form th:action="@{/products/save}" th:object="${product}" method="post">
 
+        <div th:if="${#fields.hasErrors('*')}" class="alert alert-error">
+            กรุณาแก้ไขข้อมูลที่ไม่ถูกต้อง
+        </div>
+
         <!-- ── Product Info ── -->
         <div class="card">
             <h2>📦 ข้อมูลสินค้า (Product)</h2>
             <div class="form-row">
                 <div class="form-group">
                     <label>ชื่อสินค้า</label>
-                    <input type="text" th:field="*{name}" placeholder="เช่น iPhone 15 Pro (67XXXXXXXX-X SEC 1)" required>
+                    <input type="text" th:field="*{name}" placeholder="เช่น iPhone 15 Pro (67XXXXXXXX-X SEC 1)">
+                    <span class="field-error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
                 </div>
                 <div class="form-group">
                     <label>หมวดหมู่</label>
-                    <input type="text" th:field="*{category}" placeholder="เช่น Electronics, Clothing, Food" required>
+                    <input type="text" th:field="*{category}" placeholder="เช่น Electronics, Clothing, Food">
+                    <span class="field-error" th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></span>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group">
                     <label>ยี่ห้อ</label>
-                    <input type="text" th:field="*{brand}" placeholder="เช่น Apple, Samsung" required>
+                    <input type="text" th:field="*{brand}" placeholder="เช่น Apple, Samsung">
+                    <span class="field-error" th:if="${#fields.hasErrors('brand')}" th:errors="*{brand}"></span>
                 </div>
                 <div class="form-group">
                     <label>จำนวนในคลัง</label>
-                    <input type="number" th:field="*{stock}" min="0" required>
+                    <input type="number" th:field="*{stock}" min="0">
+                    <span class="field-error" th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}"></span>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group">
                     <label>ราคาปกติ (บาท)</label>
-                    <input type="number" th:field="*{price}" step="0.01" min="0" required>
+                    <input type="number" th:field="*{price}" step="0.01" min="0">
+                    <span class="field-error" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
                 </div>
                 <div class="form-group">
                     <label>ประเภทส่วนลด</label>

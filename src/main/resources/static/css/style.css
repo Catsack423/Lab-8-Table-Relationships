@@ -56,6 +56,19 @@ h2 {
     border: 1px solid #9AE6B4;
 }
 
+.alert-error {
+    background: #FED7D7;
+    color: #822727;
+    border: 1px solid #FEB2B2;
+}
+
+.field-error {
+    display: block;
+    color: #C53030;
+    font-size: 0.8rem;
+    margin-top: 4px;
+}
+
 /* ── Buttons ── */
 .btn {
     display: inline-block;
