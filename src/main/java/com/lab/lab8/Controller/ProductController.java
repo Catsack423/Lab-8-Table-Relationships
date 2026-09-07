@@ -44,6 +44,8 @@ public class ProductController {
 
     @PostMapping("/products/save")
     public String save(@Valid ProductDto productDto, BindingResult bindingResult, Model model) {
+        
+
         if (bindingResult.hasErrors()) {
             model.addAttribute("product", productDto);
             return "products/add";

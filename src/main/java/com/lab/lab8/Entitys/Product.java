@@ -42,7 +42,7 @@ public class Product {
     @Column
     private String discountType;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
     @JoinColumn(name = "detail_id", referencedColumnName = "id")
     private ProductDetail detail;
 

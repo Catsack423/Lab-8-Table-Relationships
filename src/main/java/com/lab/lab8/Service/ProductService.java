@@ -8,13 +8,16 @@ import org.springframework.stereotype.Service;
 import com.lab.lab8.Entitys.Product;
 import com.lab.lab8.Entitys.Review;
 import com.lab.lab8.Repository.ProductRepository;
+import com.lab.lab8.Repository.ReviewRepository;
 import com.lab.lab8.exception.ProductNotFoundException;
 import com.lab.lab8.strategy.DiscountContext;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class ProductService {
     private final ProductRepository productRepository;
-
+    ReviewRepository re;
     public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
@@ -33,8 +36,11 @@ public class ProductService {
         }
         setProductRefOnReviews(product);
         productRepository.save(product);
+       
+        
+       
     }
-
+    
     public void update(Long id, Product updatedProduct) {
         Product existing = productRepository.findById(id)
                 .orElseThrow(() -> new ProductNotFoundException(id));
